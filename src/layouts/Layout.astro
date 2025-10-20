@@ -1,7 +1,7 @@
 ---
-import './src/styles/global.css';
-import Headers from '../components/Header.astro';
-import Footer from '../components/Footer.astro'; 
+import '@/styles/global.css';
+import Header from '@/sections/Header.astro';
+import Footer from '@/sections/Footer.astro'; 
 ---
 
 <!doctype html>
@@ -27,17 +27,25 @@ import Footer from '../components/Footer.astro';
 		<meta name="twitter:description" content="Gabriel Agüero desarrollador web" />
 	</head>
 	<body>
-		<Headers />
-		<slot />
-		<Footer />
+		<div id="backgraund-mask" class="min-h-screen w-full">
+			<Header />
+			<slot />
+			<Footer />
+		</div>
 	</body>
 </html>
 
-<style>
-	html,
+<style>	
 	body {
 		margin: 0;
-		width: 100%;
-		height: 100%;
+		width: 100%;	
+	}
+
+	#backgraund-mask {
+		background: linear-gradient(to bottom, #000000e8, #000000c0);
+		background-size: cover;
+		background-position: center;
+		min-height: 100vh;
 	}
 </style>
+
