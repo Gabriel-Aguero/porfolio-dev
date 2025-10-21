@@ -1,51 +1,40 @@
 ---
-import '@/styles/global.css';
-import Header from '@/sections/Header.astro';
-import Footer from '@/sections/Footer.astro'; 
+import "@/styles/global.css";
+import GradientOverlay from "@/components/GradientOverlay.astro";
 ---
 
 <!doctype html>
-<html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Porfolio personal de Gabriel Agüero</title>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content="Porfolio personal de Gabriel Agüero" />
+<html lang="es" class="bg-slate-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Portfolio personal de Gabriel Agüero</title>
+    <meta name="description" content="Portfolio de Gabriel Agüero, desarrollador frontend especializado en salud e informática." />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://devgaby.dev" />
 
-		<meta property="og:url" content="https://devgaby.dev" />
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Porfolio personal de Gabriel Agüero" />
-		<meta property="og:description" content="Gabriel Agüero desarrollador web" />
-		<meta property="og:image" content="/og-image.jpg" />  
-		<meta property="og:locale" content="es_ES" />
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://devgaby.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Portfolio personal de Gabriel Agüero" />
+    <meta property="og:description" content="Gabriel Agüero desarrollador web" />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:locale" content="es_ES" />
 
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:site" content="@gabyaguero" />
-		<meta name="twitter:creator" content="@gabyaguero" />
-		<meta name="twitter:title" content="Porfolio personal de Gabriel Agüero" />
-		<meta name="twitter:description" content="Gabriel Agüero desarrollador web" />
-	</head>
-	<body>
-		<div id="backgraund-mask" class="min-h-screen w-full">
-			<Header />
-			<slot />
-			<Footer />
-		</div>
-	</body>
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@gabyaguero" />
+    <meta name="twitter:creator" content="@gabyaguero" />
+    <meta name="twitter:title" content="Portfolio personal de Gabriel Agüero" />
+    <meta name="twitter:description" content="Gabriel Agüero desarrollador web" />
+  </head>
+  <body>
+    <div class="relative min-h-screen bg-slate-100/80 dark:bg-gray-800">
+      <GradientOverlay />
+      <div class="relative z-10">
+        <slot />
+      </div>
+    </div>
+  </body>
 </html>
-
-<style>	
-	body {
-		margin: 0;
-		width: 100%;	
-	}
-
-	#backgraund-mask {
-		background: linear-gradient(to bottom, #000000e8, #000000c0);
-		background-size: cover;
-		background-position: center;
-		min-height: 100vh;
-	}
-</style>
-

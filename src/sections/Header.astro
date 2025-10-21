@@ -1,10 +1,48 @@
-<header class="w-full max-w-xl mx-auto py-8 px-4 md:p-8 text-white">   
-    <nav class="flex justify-center items-center">
-        <ul class="flex flex-col gap-4 md:flex-row cursor-pointer">
-            <li class="hover:text-gray-400">Inicio</li>
-            <li>Sobre mí</li>
-            <li>Proyectos</li>
-            <li>Contacto</li>
-        </ul>
-    </nav>    
+---
+import Logo from '@/icons/dev.astro';
+import Brightness from '@/icons/brightness.astro';
+---
+
+<header class="w-full max-w-6xl mx-auto py-6 px-4 md:p-8 text-slate-700 text-xl dark:text-white">
+  <div class="flex justify-between items-center pt-10">
+    <a href="/" class="text-2xl font-bold">
+      <Logo class="text-blue-500 w-10 h-10" />
+    </a>
+
+    <nav class="flex justify-center items-center text-slate-900 dark:text-white">
+      <ul class="flex flex-col gap-6 md:flex-row cursor-pointer">
+        <li class="hover:text-slate-600 dark:hover:text-white">Inicio</li>
+        <li class="hover:text-slate-600 dark:hover:text-white">Sobre mí</li>
+        <li class="hover:text-slate-600 dark:hover:text-white">Proyectos</li>
+        <li class="hover:text-slate-600 dark:hover:text-white">Contacto</li>        
+      </ul>
+    </nav>
+
+    <button id="toggle-theme" class="cursor-pointer p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+      <Brightness />
+    </button>
+  </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('toggle-theme');
+
+  // ✅ Detectar el tema guardado o el del sistema
+  const storedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+    document.documentElement.classList.add('dark');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+</script>

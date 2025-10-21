@@ -1,10 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../sections/Header.astro';
-import Hero from '../sections/Hero.astro';
-import Footer from '../sections/Footer.astro';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/sections/Header.astro';
+import Hero from '@/sections/Hero.astro';
+import Footer from '@/sections/Footer.astro';
+import Proyects from '@/sections/Proyects.astro';
 ---
 
 <Layout>	
-	<Hero />	
+	<div class="flex flex-col min-h-screen">
+		<Header />
+		<Hero />
+		<div class="flex-1">
+			<Proyects />	
+		</div>	
+		<Footer />	
+	</div>
 </Layout>
