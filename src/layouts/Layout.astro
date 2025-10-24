@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 import GradientOverlay from "@/components/GradientOverlay.astro";
+import BackgroundParticles from "@/components/BackgroundParticles.astro";
 ---
 
 <!doctype html>
@@ -29,9 +30,11 @@ import GradientOverlay from "@/components/GradientOverlay.astro";
     <meta name="twitter:title" content="Portfolio personal de Gabriel Agüero" />
     <meta name="twitter:description" content="Gabriel Agüero desarrollador web" />
   </head> 
+ 
   <body>
-    <div class="relative min-h-screen">
+    <div class="relative min-h-screen">      
       <GradientOverlay />
+      <BackgroundParticles client:load />
       <div class="relative z-10">
         <slot />
       </div>
@@ -42,9 +45,12 @@ import GradientOverlay from "@/components/GradientOverlay.astro";
 <style is:global>
   body {
     margin: 0;
-    font-family: system-ui, sans-serif;
-    background-color: #000; /* color claro por defecto */
+    font-family: system-ui, sans-serif;    
+    background-color: "#111827";
     transition: background-color 0.3s, color 0.3s;
   }
-
 </style>
+
+
+
+
