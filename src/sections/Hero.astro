@@ -1,8 +1,40 @@
-<main class="max-w-6xl mx-auto py-6 text-white">
-    <section class="p-10 text-white flex flex-col justify-center items-center gap-10">
-        <h1 class="text-3xl font-medium">Hola Soy Gabriel Agüero</h1>                
-            <p class="text-xl font-medium px-10 text-balance text-center">Soy desarrollador web. Me gusta construir sitios web y aplicaciones. 
-                Me especializo en crear experiencias de usuario atractivas y funcionales.                         
-            </p>                    
-    </section>
+<main class="w-full max-w-6xl md:mx-auto py-6 text-white">
+  <section class="text-white flex flex-col justify-center items-center gap-10">
+    <h1 class="text-xl md:text-2xl font-medium typewriter-effect">
+      Hola Soy Gabriel Agüero
+    </h1>
+    <p class="text-xl font-mono px-10 text-balance text-center animate-flash">
+      Soy Programador Frontend, apasionado por la tecnología y la programación.
+      Me motiva desarrollar aplicaciones que resuelvan problemas reales y
+      mejoren la vida de las personas. Siempre priorizando la mejor experiencia
+      de usuario. Me mantengo informado y aprendiendo nuevas herramientas para
+      que me permitan crecer profesionalmente cada día mas.
+    </p>
+  </section>
 </main>
+
+<style>
+  .typewriter-effect {
+    display: block;
+    border-right: 4px solid;
+    white-space: nowrap;
+    width: 24ch;
+
+    animation:
+      typing 2s steps(24),
+      blink 0.5s step-end infinite alternate;
+    overflow: hidden;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+</style>

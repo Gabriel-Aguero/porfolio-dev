@@ -13,9 +13,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "astro": "5.13.9",
     "astro-particles": "^2.10.0",
-    "tailwindcss": "^4.1.13",
-    "tsparticles": "^3.9.1",
-    "tsparticles-engine": "^2.12.0"
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "prettier-plugin-astro": "^0.14.1"

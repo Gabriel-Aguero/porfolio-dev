@@ -1,6 +1,5 @@
 ---
 import "@/styles/global.css";
-import GradientOverlay from "@/components/GradientOverlay.astro";
 import BackgroundParticles from "@/components/BackgroundParticles.astro";
 ---
 
@@ -9,17 +8,24 @@ import BackgroundParticles from "@/components/BackgroundParticles.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Portfolio personal de Gabriel Agüero</title>
-    <meta name="description" content="Portfolio de Gabriel Agüero, desarrollador frontend especializado en salud e informática." />
+    <title>Gabriel Agüero</title>
+    <meta
+      name="description"
+      content="Portfolio de Gabriel Agüero, desarrollador frontend especializado en salud e informática."
+    />
     <meta name="theme-color" content="#0f172a" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- <link rel="icon" type="image/webp" href="/logo.webp" /> -->
     <link rel="canonical" href="https://devgaby.dev" />
 
     <!-- Open Graph -->
     <meta property="og:url" content="https://devgaby.dev" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Portfolio personal de Gabriel Agüero" />
-    <meta property="og:description" content="Gabriel Agüero desarrollador web" />
+    <meta
+      property="og:description"
+      content="Gabriel Agüero desarrollador web"
+    />
     <meta property="og:image" content="/og-image.jpg" />
     <meta property="og:locale" content="es_ES" />
 
@@ -27,14 +33,19 @@ import BackgroundParticles from "@/components/BackgroundParticles.astro";
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gabyaguero" />
     <meta name="twitter:creator" content="@gabyaguero" />
-    <meta name="twitter:title" content="Portfolio personal de Gabriel Agüero" />
-    <meta name="twitter:description" content="Gabriel Agüero desarrollador web" />
-  </head> 
- 
+    <meta
+      name="twitter:title"
+      content="Gabriel Agüero - Desarrollador Frontend"
+    />
+    <meta
+      name="twitter:description"
+      content="Gabriel Agüero desarrollador web"
+    />
+  </head>
+
   <body>
-    <div class="relative min-h-screen">      
-      <GradientOverlay />
-      <BackgroundParticles client:load />
+    <div class="relative min-h-screen w-full bg-[#020617] overflow-x-hidden">
+      <BackgroundParticles />
       <div class="relative z-10">
         <slot />
       </div>
@@ -45,12 +56,7 @@ import BackgroundParticles from "@/components/BackgroundParticles.astro";
 <style is:global>
   body {
     margin: 0;
-    font-family: system-ui, sans-serif;    
-    background-color: "#111827";
-    transition: background-color 0.3s, color 0.3s;
+    padding: 0;
+    box-sizing: border-box;
   }
 </style>
-
-
-
-
