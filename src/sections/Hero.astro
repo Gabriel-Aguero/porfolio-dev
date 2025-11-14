@@ -1,9 +1,13 @@
-<main class="w-full max-w-6xl md:mx-auto py-6 text-white">
+---
+// src/components/HeroSection.astro
+---
+
+<main class="w-full max-w-7xl md:mx-auto py-6 text-white">
   <section class="text-white flex flex-col justify-center items-center gap-10">
-    <h1 class="text-xl md:text-2xl font-medium typewriter-effect">
-      Hola Soy Gabriel Agüero
+    <h1 class="text-xl md:text-2xl font-medium typewriter-container">
+      <span id="typewriter-text" class="typewriter-text">Hola Soy Gabriel Agüero</span>
     </h1>
-    <p class="text-xl font-mono px-10 text-balance text-center animate-flash">
+    <p class="hidden text-xl font-mono px-10 text-balance text-center animate-flash">
       Soy Programador Frontend, apasionado por la tecnología y la programación.
       Me motiva desarrollar aplicaciones que resuelvan problemas reales y
       mejoren la vida de las personas. Siempre priorizando la mejor experiencia
@@ -14,27 +18,58 @@
 </main>
 
 <style>
-  .typewriter-effect {
-    display: block;
-    border-right: 4px solid;
-    white-space: nowrap;
-    width: 24ch;
+  .typewriter-container {
+    position: relative;
+    display: inline-block;
+  }
 
-    animation:
-      typing 2s steps(24),
-      blink 0.5s step-end infinite alternate;
+  .typewriter-text {
+    display: inline-block;
     overflow: hidden;
+    border-right: 3px solid #fff;
+    white-space: nowrap;
+    animation: 
+      typing 2s steps(22, end) forwards,
+      blink 0.8s step-end infinite;
+    width: 0;
+    max-width: fit-content;
   }
 
   @keyframes typing {
-    from {
-      width: 0;
-    }
+    from { width: 0; }
+    to { width: 100%; }
   }
 
   @keyframes blink {
-    50% {
-      border-color: transparent;
-    }
+    from, to { border-color: transparent; }
+    50% { border-color: #fff; }
+  }
+
+  .animate-flash {
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 </style>
+
+<script>
+  // Reiniciar la animación al cargar la página
+  document.addEventListener('DOMContentLoaded', function() {
+
+    const typewriterElement = document.getElementById('typewriter-text');
+    if(typewriterElement) {
+      
+      // Forzar el reinicio de la animación
+      typewriterElement.style.animation = 'none';
+      typewriterElement.offsetHeight; // Trigger reflow
+      typewriterElement.style.animation = 'typing 2s steps(22, end) forwards, blink 0.8s step-end infinite';
+      // Opcional: Controlar la animación con JavaScript puro
+      setTimeout(() => {
+        typewriterElement.style.animation = 'typing 2s steps(22, end) forwards, blink 0.8s step-end infinite';
+      }, 100);      
+    } 
+  });
+</script>

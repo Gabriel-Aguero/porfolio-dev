@@ -1,4 +1,6 @@
 ---
+import ChevronLeft from "@/icons/chevronLeft.astro";
+import ChevronRigth from "@/icons/chevronRigth.astro";
 import Close from "@/icons/close.astro";
 import Logo from "@/icons/dev.astro";
 import Menu from "@/icons/menu.astro";
@@ -9,8 +11,10 @@ import Menu from "@/icons/menu.astro";
     <div class="flex justify-between items-center">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2 text-2xl font-bold">
-        <Logo class="text-blue-500 w-10 h-10" />
-        <span class="hidden sm:inline">Gabydev</span>
+        <ChevronLeft class="text-blue-500 w-10 h-10" />
+        <!-- <Logo class="text-blue-500 w-10 h-10" /> -->
+        <span class="sm:inline">Gabydev</span>
+        <ChevronRigth class="text-blue-500 w-10 h-10" />
       </a>
 
       <!-- Botón menú (solo mobile) -->
@@ -52,7 +56,7 @@ import Menu from "@/icons/menu.astro";
 
           <li>
             <a
-              href="/sobre-mi"
+              href="/"
               class="group relative text-white hover:text-sky-400 transition-colors duration-300"
             >
               Sobre mí
@@ -64,7 +68,7 @@ import Menu from "@/icons/menu.astro";
 
           <li>
             <a
-              href="/proyectos"
+              href="/"
               class="group relative text-white hover:text-sky-400 transition-colors duration-300"
             >
               Proyectos
@@ -76,7 +80,7 @@ import Menu from "@/icons/menu.astro";
 
           <li>
             <a
-              href="/#contacto"
+              href="/"
               class="group relative text-white hover:text-sky-400 transition-colors duration-300"
             >
               Contacto
