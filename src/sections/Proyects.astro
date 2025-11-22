@@ -1,5 +1,123 @@
-<div class="max-w-6xl mx-auto p-10">
-  <div class="text-white">
-    <h1>AQUI VAN LOS PROYECTOS 🌙</h1>
+---
+import projectsData from "@/data/projects.json";
+import GitHub from "@/icons/gitHub.astro";
+---
+
+<section class="max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24">
+  <div class="text-center mb-12 md:mb-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+      Mis Proyectos
+    </h2>
+    <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+      Algunos de los proyectos en los que he trabajado, mostrando mis
+      habilidades y experiencia en desarrollo web.
+    </p>
   </div>
-</div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    {
+      projectsData.map((project) => (
+        <article
+          key={project.id}
+          class="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg overflow-hidden hover:border-amber-400/50 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/10 hover:-translate-y-1"
+        >
+          {/* Imagen del proyecto */}
+          <div class="relative h-48 overflow-hidden bg-gradient-to-br from-slate-700 to-slate-900">
+            <img
+              src={project.image}
+              alt={project.title}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+
+            {/* Badge de categoría */}
+            <span class="absolute top-3 right-3 px-3 py-1 text-xs font-semibold bg-amber-500/90 text-slate-900 rounded-full">
+              {project.category}
+            </span>
+
+            {/* Badge featured */}
+            {project.featured && (
+              <span class="absolute top-3 left-3 px-3 py-1 text-xs font-semibold bg-blue-500/90 text-white rounded-full">
+                ⭐ Destacado
+              </span>
+            )}
+          </div>
+
+          {/* Contenido de la tarjeta */}
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+              {project.title}
+            </h3>
+
+            <p class="text-slate-300 text-sm mb-4 line-clamp-3">
+              {project.description}
+            </p>
+
+            {/* Tecnologías */}
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.technologies.slice(0, 4).map((tech, index) => (
+                <span
+                  key={index}
+                  class="px-2 py-1 text-xs bg-slate-700/50 text-slate-300 rounded border border-slate-600"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.technologies.length > 4 && (
+                <span class="px-2 py-1 text-xs bg-slate-700/50 text-slate-300 rounded border border-slate-600">
+                  +{project.technologies.length - 4}
+                </span>
+              )}
+            </div>
+
+            {/* Enlaces */}
+            <div class="flex gap-3 pt-4 border-t border-slate-700">
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-md transition-colors duration-300 text-sm font-medium"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 13v6a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2V8a2 2 0 0 1 2 -2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                Demo
+              </a>
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-md transition-colors duration-300"
+                aria-label={`Ver código de ${project.title} en GitHub`}
+              >
+                <GitHub class="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

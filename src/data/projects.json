@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "E-commerce Platform",
+    "description": "Plataforma de comercio electrónico completa con carrito de compras, sistema de pagos y panel de administración. Desarrollada con React y Node.js.",
+    "technologies": ["React", "Node.js", "MongoDB", "Tailwind CSS", "Stripe"],
+    "image": "/logo.webp",
+    "demoUrl": "https://example.com",
+    "githubUrl": "https://github.com/Gabriel-Aguero/project1",
+    "category": "Full Stack",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Dashboard Analytics",
+    "description": "Dashboard interactivo para visualización de datos y métricas en tiempo real. Incluye gráficos dinámicos y exportación de reportes.",
+    "technologies": ["Vue.js", "TypeScript", "Chart.js", "Firebase"],
+    "image": "/logo.webp",
+    "demoUrl": "https://example.com",
+    "githubUrl": "https://github.com/Gabriel-Aguero/project2",
+    "category": "Frontend",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "title": "Task Management App",
+    "description": "Aplicación de gestión de tareas con drag & drop, filtros avanzados y sincronización en tiempo real entre dispositivos.",
+    "technologies": ["React", "Redux", "WebSockets", "PostgreSQL"],
+    "image": "/logo.webp",
+    "demoUrl": "https://example.com",
+    "githubUrl": "https://github.com/Gabriel-Aguero/project3",
+    "category": "Full Stack",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "title": "Portfolio Website",
+    "description": "Portfolio personal responsive con animaciones modernas y diseño minimalista. Optimizado para SEO y rendimiento.",
+    "technologies": ["Astro", "Tailwind CSS", "TypeScript"],
+    "image": "/logo.webp",
+    "demoUrl": "https://devgaby.dev",
+    "githubUrl": "https://github.com/Gabriel-Aguero/porfolio-dev",
+    "category": "Frontend",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "title": "Real-time Chat App",
+    "description": "Aplicación de chat en tiempo real con salas privadas, emojis, y notificaciones push. Incluye sistema de autenticación robusto.",
+    "technologies": ["React", "Socket.io", "Express", "JWT"],
+    "image": "/logo.webp",
+    "demoUrl": "https://example.com",
+    "githubUrl": "https://github.com/Gabriel-Aguero/project4",
+    "category": "Full Stack",
+    "featured": true
+  },
+  {
+    "id": 6,
+    "title": "Weather Forecast App",
+    "description": "Aplicación del clima con predicciones detalladas, mapas interactivos y alertas meteorológicas. Integrada con APIs externas.",
+    "technologies": ["JavaScript", "OpenWeather API", "Leaflet", "CSS3"],
+    "image": "/logo.webp",
+    "demoUrl": "https://example.com",
+    "githubUrl": "https://github.com/Gabriel-Aguero/project5",
+    "category": "Frontend",
+    "featured": false
+  }
+]
