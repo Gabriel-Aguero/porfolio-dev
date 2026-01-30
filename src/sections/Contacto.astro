@@ -1,29 +1,137 @@
----
-import Linkedin from "@/icons/linkedin.astro";
-import GitHub from "@/icons/gitHub.astro";
----
 
-<section id="contacto" class="w-full md:max-w-6xl mx-auto py-10 text-white">
-  <div class="flex flex-col md:flex-row gap-2 justify-center items-center">
-    <a
-      class="py-2 border-2 border-slate-300 px-10 hover:border-amber-400 transition-colors duration-300 hover:animate-pulse flex gap-2 items-center"
-      href="https://www.linkedin.com/in/gabriel-aguero-dev/ "
-      target="_blank"
-      rel="noopener noreferrer"
+<section
+  id="contacto"
+  class="
+    w-full
+    md:max-w-4xl mx-auto py-20
+    text-white
+
+    scale-95 opacity-0
+    timeline-view
+    animate-zoom-in
+    animate-range-[entry_10%_cover_40%]
+  "
+>
+
+<form
+id="contact-form"
+class="bg-transparent text-white font-bold rounded-2xl shadow-lg p-6 space-y-5 border border-gray-100"
+>
+    <h2 class="text-2xl md:text-3xl font-medium text-center mb-6">
+      Contáctame
+    </h2>
+    <div>
+      <label class="block text-sm font-bold text-white mb-1">Nombre</label>
+      <input
+        type="text"
+        name="name"
+        required
+        class="w-full rounded-xl border border-orange-300 px-4 py-2.5
+               focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="Tu nombre"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-bold text-white mb-1">Email</label>
+      <input
+        type="email"
+        name="email"
+        required
+        class="w-full rounded-xl border border-orange-300 px-4 py-2.5
+               focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="tu@email.com"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-bold text-white mb-1">Mensaje</label>
+      <textarea
+        name="message"
+        rows="4"
+        required
+        class="w-full rounded-xl border border-orange-300 px-4 py-2.5 resize-none
+               focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="Contáme de que trata tu idea o consulta"
+      ></textarea>
+    </div>
+
+    <p id="form-status" class="text-sm hidden"></p>
+
+    <button
+      id="submit-btn"
+      type="submit"
+      class="
+        w-full bg-gradient-to-l from-orange-500 to-orange-600
+        text-white font-bold text-lg py-3 rounded-xl
+        hover:scale-[1.02] transition-transform
+        focus:outline-none focus:ring-4 focus:ring-orange-300
+      "
     >
-      <Linkedin class="w-8 h-8" />
-      <span>Linkedin</span>
-    </a>
-    <a
-      class="py-2 border-2 border-slate-300 px-10 hover:border-amber-400 transition-colors duration-300 hover:animate-pulse flex gap-2 items-center"
-      href="https://github.com/Gabriel-Aguero"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <GitHub class="w-8 h-8" />
-      <span>GitHub</span>
-    </a>
-  </div>
+      Enviar mensaje
+    </button>
+  </form>
 </section>
-)
+
+<!-- EmailJS -->
+<script>
+  import emailjs from "@emailjs/browser";
+
+  emailjs.init("jmJWA2o5AT8pUCcw9");
+
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+  const button = document.getElementById("submit-btn") as HTMLButtonElement | null;
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Enviando...";
+      }
+      if (status) {
+        status.classList.add("hidden");
+      }
+
+      try {
+        await emailjs.sendForm(
+          "service_xzbtj5f",
+          "template_t5bjgyi",
+          form as HTMLFormElement
+        );
+
+        if (status) {
+          status.textContent = "✅ Mensaje enviado correctamente";
+          status.className = "text-sm text-green-400";
+          
+        }
+        (form as HTMLFormElement).reset();
+        
+        setTimeout(() => {
+          status?.classList.add("hidden");
+        }, 2000);
+      } catch (error) {
+        if (status) {
+          status.textContent = "❌ Error al enviar. Probá de nuevo.";
+          status.className = "text-sm text-red-400";
+        }
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = "Enviar mensaje";          
+        }
+        if (status) {
+          status.classList.remove("hidden");
+        }
+      }
+    });
+  }
+</script>
+
+  
+
+
+</section>
 
