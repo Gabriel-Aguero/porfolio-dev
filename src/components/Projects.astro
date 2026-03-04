@@ -1,73 +1,86 @@
 ---
 import ProjectCard from './ProjectsCard.astro';
-import IconAstro from "@/icons/IconAstro.astro";
-import IconReact from "@/icons/IconReact.astro";
-import IconTailwind from "@/icons/IconTailwind.astro";
-import IconSupabase from "@/icons/IconSupabase.astro";
 
+import IconAstro    from '@/icons/IconAstro.astro';
+import IconReact    from '@/icons/IconReact.astro';
+import IconTailwind from '@/icons/IconTailwind.astro';
+import IconSupabase from '@/icons/IconSupabase.astro';
+import IconGitHub     from '@/icons/IconGitHub.astro';
+/**
+ * color: clase Tailwind del color original de cada tecnología.
+ * githubUrl: opcional, si el repo es público.
+ */
 const projects = [
   {
     title: 'Liga Santander',
     description: 'Sitio Web Oficial de la Liga Santander, una liga de fútbol amateur en argentina. Perfil para clubes, fichajes de jugadores, fixtures, tabla de posiciones y resultados en tiempo real.',
-    url: 'https://www.liga-s-argentina.com.ar/',
+    url: 'https://www.liga-s-argentina.com.ar/',    
     previewImage: '/images/liga-santander.webp',
-    tags: [{
-      label: 'Astro',
-      Icon: IconAstro,
-      },
-      {
-      label: 'React',
-      Icon: IconReact,
-      },
-      {
-      label: 'TailwindCss',
-      Icon: IconTailwind,
-      },
-      {
-      label: 'Supabase',
-      Icon: IconSupabase,
-      },
+    accentColor: 'red' as const,
+    tags: [
+      { label: 'Astro',       Icon: IconAstro,    color: 'text-orange-400'  },
+      { label: 'React',       Icon: IconReact,    color: 'text-sky-400'     },
+      { label: 'Tailwindcss', Icon: IconTailwind, color: 'text-cyan-400'    },
+      { label: 'Supabase',    Icon: IconSupabase, color: 'text-emerald-400' },
+      { label: 'GitHub',      Icon: IconGitHub,   color: 'text-slate-400'   },
     ],
-    accentColor: 'orange' as const,
   },
-  // {
-  //   title: 'Escalas de Sedoanalgesia',
-  //   description: 'Herramienta clínica con escalas de evaluación de dolor y sedación para profesionales de la salud.',
-  //   url: 'https://escalasanalgosedacion.com/',
-  //   previewImage: '/images/escalasedoanalgesia.webp',
-  //   tags: ['HTML', 'CSS', 'JavaScript'],
-  //   accentColor: 'teal' as const,
-  // },
-  // {
-  //   title: 'Pagos Clubes',
-  //   description: 'Sistema de gestión de cuotas y cobros digitales para clubes deportivos.',
-  //   url: 'https://pagosclubes.com',
-  //   previewImage: '/images/pagosclubes.webp',
-  //   tags: ['HTML', 'CSS', 'JavaScript'],
-  //   accentColor: 'orange' as const,
-  // },
-  // {
-  //   title: 'Fundación Silvia Flores',
-  //   description: 'Sitio institucional para una fundación sin fines de lucro con historia, actividades y contacto.',
-  //   url: 'https://www.fundacionsilviaflores.org.ar/',
-  //   previewImage: '/images/fundacion.webp',
-  //   tags: ['HTML', 'CSS', 'JavaScript'],
-  //   accentColor: 'purple' as const,
-  // },
+  {
+    title: 'Escalas de Sedoanalgesia',
+    description: 'Herramienta clínica con escalas de evaluación de dolor y sedación para profesionales de la salud.',
+    url: 'https://escalasanalgosedacion.com/',
+    githubUrl: 'https://github.com/Gabriel-Aguero/analgosedacionApp.git',
+    previewImage: '/images/escalasedoanalgesia.webp',
+    accentColor: 'blue' as const,
+    tags: [
+      { label: 'Astro',       Icon: IconAstro,    color: 'text-orange-400'  },
+      { label: 'React',       Icon: IconReact,    color: 'text-sky-400'     },
+      { label: 'Tailwindcss', Icon: IconTailwind, color: 'text-cyan-400'    },
+      { label: 'Supabase',    Icon: IconSupabase, color: 'text-emerald-400' },
+      { label: 'GitHub',      Icon: IconGitHub,   color: 'text-slate-400'   },
+    ],
+  },
+  {
+    title: 'Pagos Clubes',
+    description: 'Sistema de gestión de cuotas y cobros digitales para clubes deportivos.',
+    url: 'https://pagosclubes.com',
+    githubUrl: 'https://github.com/Gabriel-Aguero/sistema_gestor.git',
+    previewImage: '/images/pagosclubes.webp',
+    accentColor: 'teal' as const,
+    tags: [
+      { label: 'Astro',       Icon: IconAstro,    color: 'text-orange-400'  },
+      { label: 'React',       Icon: IconReact,    color: 'text-sky-400'     },
+      { label: 'Tailwindcss', Icon: IconTailwind, color: 'text-cyan-400'    },
+      { label: 'Supabase',    Icon: IconSupabase, color: 'text-emerald-400' },
+      { label: 'GitHub',      Icon: IconGitHub,   color: 'text-slate-400'   },
+    ],
+  },
+  {
+    title: 'Fundación Silvia Flores',
+    description: 'Sitio institucional para una fundación sin fines de lucro con historia, actividades y contacto.',
+    url: 'https://www.fundacionsilviaflores.org.ar/',
+    githubUrl: 'https://github.com/Gabriel-Aguero/fundacionsilflo.git',
+    previewImage: '/images/fundacion.webp',
+    accentColor: 'blue' as const,
+    tags: [
+      { label: 'Astro',       Icon: IconAstro,    color: 'text-orange-400'  },
+      { label: 'React',       Icon: IconReact,    color: 'text-sky-400'     },
+      { label: 'Tailwindcss', Icon: IconTailwind, color: 'text-cyan-400'    },
+      { label: 'Supabase',    Icon: IconSupabase, color: 'text-emerald-400' },
+      { label: 'GitHub',      Icon: IconGitHub,   color: 'text-slate-400'   },
+    ],
+  },
 ];
 ---
 
 <section id="proyectos" class="max-w-5xl mx-auto px-4 py-20">
 
-  <!-- Header -->
-  <div class="mb-12">
-    <p class="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-sky-400 mb-2">portafolio</p>
-    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-orange-400">
+  <div class="mb-12">    
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-orange-300">
       Mis <span class="text-sky-400">Proyectos</span>
     </h2>
   </div>
 
-  <!-- Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
     {projects.map((project) => (
       <ProjectCard {...project} />

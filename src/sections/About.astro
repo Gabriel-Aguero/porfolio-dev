@@ -1,0 +1,160 @@
+---
+// About.astro
+---
+
+<section id="sobre-mi" class="max-w-5xl mx-auto px-4 py-24">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+    <!-- Left: text -->
+    <div class="flex flex-col gap-7">
+
+      <!-- Label -->
+      <div class="flex items-center gap-3">
+        <span class="inline-block w-6 h-px bg-sky-400" />
+        <span class="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-sky-400">sobre mí</span>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight leading-snug">
+        Hola, soy <span class="text-sky-400">Gabriel</span> 👋
+      </h2>
+
+      <!-- Body text -->
+      <p class="text-slate-400 text-base leading-[1.85] max-w-md">
+        Desarrollo interfaces web que combinan
+        <span class="text-white/90 font-medium">diseño limpio</span> con
+        <span class="text-white/90 font-medium">funcionalidad real</span>.
+        Me especializo en frontend y también trabajo en soluciones digitales para el
+        <span class="text-sky-400 font-medium">sector salud</span> —
+        siempre con el mismo objetivo: que la tecnología sea
+        <span class="text-white/90 font-medium">simple, rápida y útil</span>.
+      </p>
+
+      <!-- Chips -->
+      <div class="flex flex-wrap gap-2">
+        {[
+          'Frontend Developer',
+          'Informático en Salud',
+          'UI / UX',
+          'Open to work',
+        ].map((chip) => (
+          <span class="text-[0.65rem] font-mono px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] text-slate-400">
+            {chip}
+          </span>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="flex items-center gap-4 pt-1">
+        <a
+          href="#proyectos"
+          class="text-sm font-medium text-white bg-sky-500/20 border border-sky-400/30 px-5 py-2 rounded-lg hover:bg-sky-500/30 hover:border-sky-400/50 transition-all duration-300"
+        >
+          Ver proyectos
+        </a>
+        <a
+          href="#contacto"
+          class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-300 flex items-center gap-1.5"
+        >
+          Contacto
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Right: card with stats -->
+    <div class="flex flex-col gap-4">
+
+      <!-- Main card -->
+      <div class="rounded-2xl border border-white/[0.07] bg-[#0f1623] p-7 flex flex-col gap-6">
+
+        <!-- Avatar placeholder + name -->
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-sky-500/30 to-violet-500/20 border border-white/[0.08] flex items-center justify-center shrink-0">
+            <span class="font-mono font-bold text-xl text-sky-400">G</span>
+          </div>
+          <div>
+            <p class="font-semibold text-white/90 text-sm tracking-tight">Gabriel Agüero</p>
+            <p class="text-[0.7rem] font-mono text-slate-500 mt-0.5">Frontend Developer</p>
+          </div>
+          <!-- status -->
+          <div class="ml-auto flex items-center gap-1.5">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400/60"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-[0.58rem] font-mono text-emerald-400/80">disponible</span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="h-px bg-white/[0.05]" />
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4 text-center">
+          {[
+            { value: '4+',  label: 'Proyectos' },
+            { value: '2',   label: 'Industrias' },
+            { value: '∞',   label: 'Café ☕'    },
+          ].map(({ value, label }) => (
+            <div class="flex flex-col gap-1">
+              <span class="text-xl font-bold text-white/90">{value}</span>
+              <span class="text-[0.6rem] font-mono text-slate-500 uppercase tracking-wider">{label}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Divider -->
+        <div class="h-px bg-white/[0.05]" />
+
+        <!-- Focus areas -->
+        <div class="flex flex-col gap-2.5">
+          <p class="text-[0.65rem] font-mono text-slate-500 uppercase tracking-widest">Áreas de enfoque</p>
+          {[
+            { label: 'Desarrollo Frontend',     pct: 65, color: 'bg-sky-400'     },
+            { label: 'Informática en Salud',    pct: 25, color: 'bg-emerald-400' },
+            { label: 'Diseño UI / UX',          pct: 10, color: 'bg-violet-400'  },
+          ].map(({ label, pct, color }) => (
+            <div class="flex items-center gap-3">
+              <span class="text-[0.65rem] font-mono text-slate-400 w-36 shrink-0">{label}</span>
+              <div class="flex-1 h-1 rounded-full bg-white/[0.05]">
+                <div class={`h-1 rounded-full ${color}`} style={`width: ${pct}%`} />
+              </div>
+              <span class="text-[0.6rem] font-mono text-slate-600 w-6 text-right">{pct}%</span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Location + stack row -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-xl border border-white/[0.07] bg-[#0f1623] px-4 py-3.5 flex items-center gap-3">
+          <svg class="w-4 h-4 text-slate-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 11m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/>
+            <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/>
+          </svg>
+          <div>
+            <p class="text-[0.65rem] font-mono text-slate-500">Ubicación</p>
+            <p class="text-xs text-slate-300 font-medium mt-0.5">Argentina 🇦🇷</p>
+          </div>
+        </div>
+        <div class="rounded-xl border border-white/[0.07] bg-[#0f1623] px-4 py-3.5 flex items-center gap-3">
+          <svg class="w-4 h-4 text-slate-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 8l-4 4l4 4"/><path d="M17 8l4 4l-4 4"/><path d="M14 4l-4 16"/>
+          </svg>
+          <div>
+            <p class="text-[0.65rem] font-mono text-slate-500">Stack principal</p>
+            <p class="text-xs text-slate-300 font-medium mt-0.5">Astro · React</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
