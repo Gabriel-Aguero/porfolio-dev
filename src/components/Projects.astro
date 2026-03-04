@@ -1,0 +1,57 @@
+---
+import ProjectCard from './ProjectsCard.astro';
+
+const projects = [
+  {
+    title: 'Liga Santander',
+    description: 'Sitio Web Oficial de la Liga Santander, una liga de fútbol amateur en argentina. Perfil para clubes, fichajes de jugadores, fixtures, tabla de posiciones y resultados en tiempo real.',
+    url: 'https://www.liga-s-argentina.com.ar/',
+    previewImage: '/images/liga-santander.webp',
+    tags: ['Astro', 'React', 'Tailwindcss', 'Supabase', 'Node.js'],
+    accentColor: 'blue' as const,
+  },
+  {
+    title: 'Escalas de Sedoanalgesia',
+    description: 'Herramienta clínica con escalas de evaluación de dolor y sedación para profesionales de la salud.',
+    url: 'https://escalasanalgosedacion.com/',
+    previewImage: '/images/escalasedoanalgesia.webp',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    accentColor: 'teal' as const,
+  },
+  {
+    title: 'Pagos Clubes',
+    description: 'Sistema de gestión de cuotas y cobros digitales para clubes deportivos.',
+    url: 'https://pagosclubes.com',
+    previewImage: '/images/pagosclubes.webp',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    accentColor: 'orange' as const,
+  },
+  {
+    title: 'Fundación Silvia Flores',
+    description: 'Sitio institucional para una fundación sin fines de lucro con historia, actividades y contacto.',
+    url: 'https://www.fundacionsilviaflores.org.ar/',
+    previewImage: '/images/fundacion.webp',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    accentColor: 'purple' as const,
+  },
+];
+---
+
+<section id="proyectos" class="max-w-5xl mx-auto px-4 py-20">
+
+  <!-- Header -->
+  <div class="mb-12">
+    <p class="font-mono text-[0.7rem] tracking-[0.2em] uppercase text-sky-400 mb-2">portafolio</p>
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+      Mis <span class="text-sky-400">Proyectos</span>
+    </h2>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    {projects.map((project) => (
+      <ProjectCard {...project} />
+    ))}
+  </div>
+
+</section>
