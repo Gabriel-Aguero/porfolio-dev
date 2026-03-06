@@ -5,7 +5,7 @@ import IconAstro    from '@/icons/IconAstro.astro';
 import IconReact    from '@/icons/IconReact.astro';
 import IconTailwind from '@/icons/IconTailwind.astro';
 import IconSupabase from '@/icons/IconSupabase.astro';
-import IconGitHub     from '@/icons/IconGitHub.astro';
+import IconMercadoPago from '@/icons/IconMercadoPago.astro';
 /**
  * color: clase Tailwind del color original de cada tecnología.
  * githubUrl: opcional, si el repo es público.
@@ -22,8 +22,9 @@ const projects = [
       { label: 'React',       Icon: IconReact,    color: 'text-sky-400'     },
       { label: 'Tailwindcss', Icon: IconTailwind, color: 'text-cyan-400'    },
       { label: 'Supabase',    Icon: IconSupabase, color: 'text-emerald-400' },
-      { label: 'GitHub',      Icon: IconGitHub,   color: 'text-slate-400'   },
+      
     ],
+    details: 'La Liga Santander es una liga de fútbol amateur en argentina con mas de 50 clubes. Cuenta con perfil para clubes y administradores. Cada club tiene la posibilidad de registrar jugadores, gestionar la información de su club e imprimir la lista de buena fe. Para todo publico esta disponible fixtures, tabla de posiciones y resultados de todas las jornadas.',
   },
   {
     title: 'Escalas de Sedoanalgesia',
@@ -37,8 +38,9 @@ const projects = [
       { label: 'React',       Icon: IconReact,    color: 'text-sky-400'     },
       { label: 'Tailwindcss', Icon: IconTailwind, color: 'text-cyan-400'    },
       { label: 'Supabase',    Icon: IconSupabase, color: 'text-emerald-400' },
-      { label: 'GitHub',      Icon: IconGitHub,   color: 'text-slate-400'   },
+     
     ],
+    details: 'Esta es una aplicación que esta basada en un proyecto de investigación, con el objetivo centrado en mejorar la calidad del cuidado de pacientes. Cuenta con diferentes escalas y calclula el Score teniendo en cuenta ciertos criterios y condiciones del paciente.',
   },
   {
     title: 'Pagos Clubes',
@@ -47,13 +49,14 @@ const projects = [
     githubUrl: 'https://github.com/Gabriel-Aguero/sistema_gestor.git',
     previewImage: '/images/pagosclubes.webp',
     accentColor: 'teal' as const,
-    tags: [
-      { label: 'Astro',       Icon: IconAstro,    color: 'text-orange-400'  },
+    tags: [      
       { label: 'React',       Icon: IconReact,    color: 'text-sky-400'     },
       { label: 'Tailwindcss', Icon: IconTailwind, color: 'text-cyan-400'    },
       { label: 'Supabase',    Icon: IconSupabase, color: 'text-emerald-400' },
-      { label: 'GitHub',      Icon: IconGitHub,   color: 'text-slate-400'   },
+      { label: 'MercadoPago', Icon: IconMercadoPago, color: 'text-sky-400'     },
+      
     ],
+    details: 'Esta aplicación permite gestionar y llevar el control cuotas. Cuenta con un perfil para el administrador y tambien la posibilidad de realizar pagos por parte de clientes a traves de mercado pago. El administrador puede llevar el control de clientes y el estado de cuenta de cada uno de ellos. Meses atrasado, fecha de pagos, proximo vencimiento.',
   },
   {
     title: 'Fundación Silvia Flores',
@@ -67,8 +70,9 @@ const projects = [
       { label: 'React',       Icon: IconReact,    color: 'text-sky-400'     },
       { label: 'Tailwindcss', Icon: IconTailwind, color: 'text-cyan-400'    },
       { label: 'Supabase',    Icon: IconSupabase, color: 'text-emerald-400' },
-      { label: 'GitHub',      Icon: IconGitHub,   color: 'text-slate-400'   },
+      
     ],
+    details: 'Este sitio es una página web para una fundación sin fines de lucro la cual tiene como objetivo ayudar a personas con bajos recursos acceder a cursos y capacitaciones de manera gratuita. Brinda una gran espacio con profesionales de la salud que dan oportunidades a las personas',
   },
 ];
 ---
