@@ -79,7 +79,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
     <!-- ── FRONT ── -->
     <div class="flip-face flip-front rounded-xl border shadow-lg shadow-slate-950 border-white/[0.07] bg-[#0f1623] overflow-hidden">
 
-      <div class="relative overflow-hidden h-56 bg-[#131929] shrink-0">
+      <div class="relative overflow-hidden h-56 lg:h-72 bg-[#131929] shrink-0">
         <img
           src={previewImage}
           alt={title}
@@ -215,7 +215,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
   .flip-card {
     perspective: 1200px;
     height: 100%;
-    min-height: 480px;
+    min-height: 520px;    
   }
   .flip-inner {
     position: relative;
@@ -245,44 +245,3 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
   }
 </style>
 
-<script define:vars={{ cardId, gallery }}>
-  const lb      = document.getElementById(`lb-${cardId}`);
-  if (!lb) throw new Error();
-
-  const lbImg     = lb.querySelector('.lb-img');
-  const lbCounter = lb.querySelector('.lb-counter');
-  let current     = 0;
-
-  const show = (i) => {
-    current = (i + gallery.length) % gallery.length;
-    lbImg.src = gallery[current].image;
-    lbImg.alt = gallery[current].alt ?? `Imagen ${current + 1}`;
-    lbCounter.textContent = `${current + 1} / ${gallery.length}`;
-  };
-
-  const open  = (i) => { show(i); lb.classList.add('is-open'); };
-  const close = ()  => lb.classList.remove('is-open');
-
-  // Thumbs
-  document.querySelectorAll(`.gallery-thumb[data-card="${cardId}"]`).forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      open(Number(btn.dataset.index));
-    });
-  });
-
-  lb.querySelector('.lb-close').addEventListener('click', close);
-  lb.querySelector('.lb-prev').addEventListener('click', () => show(current - 1));
-  lb.querySelector('.lb-next').addEventListener('click', () => show(current + 1));
-
-  // Click outside image closes
-  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
-
-  // Keyboard
-  document.addEventListener('keydown', (e) => {
-    if (!lb.classList.contains('is-open')) return;
-    if (e.key === 'Escape')     close();
-    if (e.key === 'ArrowLeft')  show(current - 1);
-    if (e.key === 'ArrowRight') show(current + 1);
-  });
-</script>
