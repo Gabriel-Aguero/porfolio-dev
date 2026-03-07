@@ -4,26 +4,32 @@ import IconGithub from "@/icons/IconGitHub.astro";
 import IconCoffe from "@/icons/IconCoffe.astro";
 ---
 
-<footer class="w-full md:max-w-6xl mx-auto md:p-8 pt-10 text-sm py-10 text-white">
-  <nav class="flex flex-col gap-8 justify-center items-center">
+<footer id="footer" class="w-full md:max-w-6xl mx-auto md:p-8 text-sm py-2 text-white">
+  <nav class="flex flex-col gap-8 items-center">
 
     <!-- Cafecito -->
     <div class="flex flex-col items-center gap-4 text-center max-w-md">
-      <p class="text-slate-400 leading-relaxed">
+      <p class="text-slate-400 text-md leading-relaxed">
         Si mi trabajo te resultó útil o simplemente querés apoyar lo que hago,
         podés invitarme un cafecito. <span class="text-white/80">Cada contribución me ayuda a seguir
-        creando proyectos y herramientas de código abierto.</span> ☕
+        creando proyectos y herramientas de código abierto.</span>
       </p>
       <a
         href="https://cafecito.app/gabyaguero"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-2.5 px-6 py-2.5 rounded-full border border-orange-400/60 bg-orange-400/10 text-orange-300 hover:bg-orange-400/25 hover:border-orange-400 hover:text-orange-200 transition-all duration-300 font-mono text-[0.75rem]"
+        class="relative flex items-center gap-2.5 px-6 py-2.5 rounded-full
+          border border-orange-400/70 bg-orange-500/15 text-orange-300
+          shadow-[0_0_12px_rgba(251,146,60,0.25)]
+          hover:bg-orange-500/25 hover:border-orange-400 hover:text-orange-200
+          hover:shadow-[0_0_20px_rgba(251,146,60,0.4)]
+          transition-all duration-300 font-mono text-[0.75rem]
+          animate-pulse"
       >
         <IconCoffe class="w-4 h-4 shrink-0" />
         Cafecito
       </a>
-
+    </div>
     <!-- Divider -->
     <div class="border-b border-white/[0.08] w-full" />
 
