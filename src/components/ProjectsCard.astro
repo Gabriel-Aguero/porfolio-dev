@@ -77,7 +77,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
   <div class="flip-inner">
 
     <!-- ── FRONT ── -->
-    <div class="flip-face flip-front rounded-xl border shadow-lg shadow-slate-950 border-white/[0.07] bg-[#0f1623] overflow-hidden">
+    <div class="flip-face flip-front rounded-xl border shadow-lg shadow-slate-950 border-white/[0.07] bg-[#0f1623] overflow-hidden hover:animate-pulse duration-[3000ms]">
 
       <div class="relative overflow-hidden h-56 lg:h-72 bg-[#131929] shrink-0">
         <img
@@ -215,7 +215,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
   .flip-card {
     perspective: 1200px;
     height: 100%;
-    min-height: 520px;    
+    min-height: 520px;      
   }
   .flip-inner {
     position: relative;
