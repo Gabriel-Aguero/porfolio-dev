@@ -1,6 +1,6 @@
 ---
 import ChevronLeft from "@/icons/chevronLeft.astro";
-import ChevronRigth from "@/icons/chevronRigth.astro";
+import ChevronRight from "@/icons/chevronRight.astro";
 import Close from "@/icons/close.astro";
 import Logo from "@/icons/dev.astro";
 import IconCoffe from "@/icons/IconCoffe.astro";
@@ -19,7 +19,7 @@ import Menu from "@/icons/menu.astro";
       <a href="/" class="flex items-center gap-2 text-2xl font-bold">
         <ChevronLeft class="text-blue-500 w-10 h-10" />
         <span class="sm:inline">Gabydev</span>
-        <ChevronRigth class="text-blue-500 w-10 h-10" />
+        <ChevronRight class="text-blue-500 w-10 h-10" />
       </a>
 
       <!-- Botón menú (solo mobile) -->
@@ -48,38 +48,38 @@ import Menu from "@/icons/menu.astro";
       <a href="/" class="flex items-center gap-2 text-2xl font-bold md:hidden">
         <ChevronLeft class="text-blue-500 w-10 h-10" />
         <span class="sm:inline">Gabydev</span>
-        <ChevronRigth class="text-blue-500 w-10 h-10" />
+        <ChevronRight class="text-blue-500 w-10 h-10" />
       </a>
 
         <ul class="flex flex-col items-center justify-center md:flex-row gap-8 md:gap-10 text-xl cursor-pointer">
           <li>
-            <a href="/" class="group relative text-white hover:text-sky-400 transition-colors duration-300">
+            <a href="#" class="group relative text-white hover:text-sky-400 transition-colors duration-300">
               Inicio
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full group-aria-[current=true]:w-full"></span>
             </a>
           </li>
           <li>
-            <a href="/#hero" class="group relative text-white hover:text-sky-400 transition-colors duration-300">
+            <a href="#hero" data-section="hero" class="group relative text-white hover:text-sky-400 aria-[current=true]:text-sky-400 transition-colors duration-300">
               Sobre mí
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full group-aria-[current=true]:w-full"></span>
             </a>
           </li>
           <li>
-            <a href="/#proyectos" class="group relative text-white hover:text-sky-400 transition-colors duration-300">
+            <a href="#proyectos" data-section="proyectos" class="group relative text-white hover:text-sky-400 aria-[current=true]:text-sky-400 transition-colors duration-300">
               Proyectos
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full group-aria-[current=true]:w-full"></span>
             </a>
           </li>
           <li>
-            <a href="/#contacto" class="group relative text-white hover:text-sky-400 transition-colors duration-300">
+            <a href="#contacto" data-section="contacto" class="group relative text-white hover:text-sky-400 aria-[current=true]:text-sky-400 transition-colors duration-300">
               Contacto
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full group-aria-[current=true]:w-full"></span>
             </a>
           </li>
           <li>
-            <a href="/#footer" class="group relative text-white hover:text-sky-400 transition-colors duration-300">
+            <a href="#footer" data-section="footer" class="group relative text-white hover:text-sky-400 aria-[current=true]:text-sky-400 transition-colors duration-300">
               <IconCoffe class="w-7 h-7" />
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full group-aria-[current=true]:w-full"></span>
             </a>
           </li>
         </ul>
@@ -109,30 +109,51 @@ import Menu from "@/icons/menu.astro";
   }, { passive: true });
 
   // Menú mobile
-  toggle?.addEventListener("click", () => {
-    menu?.classList.toggle("hidden");
-    menu?.classList.toggle("flex");
-    toggle?.classList.toggle("hidden");
-    closeToggle?.classList.toggle("hidden");
-  });
+  const setMenuOpen = (open: boolean) => {
+    menu?.classList.toggle("hidden", !open);
+    menu?.classList.toggle("flex", open);
+    toggle?.classList.toggle("hidden", open);
+    closeToggle?.classList.toggle("hidden", !open);
+  };
 
-  closeToggle?.addEventListener("click", () => {
-    menu?.classList.toggle("hidden");
-    menu?.classList.toggle("flex");
-    toggle?.classList.toggle("hidden");
-    closeToggle?.classList.toggle("hidden");
-  });
+  toggle?.addEventListener("click", () => setMenuOpen(true));
+  closeToggle?.addEventListener("click", () => setMenuOpen(false));
 
   // Cerrar menú mobile al tocar un link
   menu?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      if (window.innerWidth < 768) {
-        menu?.classList.add("hidden");
-        menu?.classList.remove("flex");
-        toggle?.classList.remove("hidden");
-        closeToggle?.classList.add("hidden");
-      }
+      if (window.innerWidth < 768) setMenuOpen(false);
     });
   });
 
+  // Marca en el menú la sección que está en pantalla
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>("#menu a[data-section]");
+
+  const setActive = (id: string | null) => {
+    navLinks.forEach((link) => {
+      if (link.dataset.section === id) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    },
+    // Franja en el centro de la pantalla: la sección que la cruza es la activa
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+
+  navLinks.forEach((link) => {
+    const section = document.getElementById(link.dataset.section!);
+    if (section) observer.observe(section);
+  });
+
+  // Arriba de todo no hay sección activa; al llegar al final, el footer
+  window.addEventListener("scroll", () => {
+    if (window.scrollY < 100) setActive(null);
+    else if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) setActive("footer");
+  }, { passive: true });
 </script>

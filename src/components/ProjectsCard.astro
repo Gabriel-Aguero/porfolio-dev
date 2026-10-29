@@ -8,24 +8,22 @@ export interface Tag {
   color?: string;
 }
 
-export interface GalleryImage {
-  image: string;
-  alt: string;
-}
-
 export interface Props {
   title: string;
   description: string;
   url: string;
   githubUrl?: string;
   previewImage: string;
-  gallery?: GalleryImage[];
+  /** 'contain' muestra la imagen entera y centrada (ideal para logos) */
+  imageFit?: 'cover' | 'contain';
+  /** Texto que acompaña a la imagen cuando imageFit es 'contain' */
+  imageLabel?: { title: string; subtitle?: string };
   tags: Tag[];
   details: string;
   accentColor: 'blue' | 'teal' | 'red' | 'purple';
 }
 
-const { title, description, url, githubUrl, previewImage, gallery = [], tags, accentColor, details } = Astro.props;
+const { title, description, url, githubUrl, previewImage, imageFit = 'cover', imageLabel, tags, accentColor, details } = Astro.props;
 
 const tagBg = {
   blue:   'bg-sky-400/[0.07] border-sky-400/20 hover:bg-sky-400/15',
@@ -55,6 +53,14 @@ const titleAccent = {
   purple: 'text-violet-400',
 }[accentColor];
 
+// Hover: borde y brillo del color de acento en la cara frontal
+const hoverGlow = {
+  blue:   'group-hover/card:border-sky-400/40 group-hover/card:shadow-sky-500/20',
+  teal:   'group-hover/card:border-emerald-400/40 group-hover/card:shadow-emerald-500/20',
+  red:    'group-hover/card:border-orange-400/40 group-hover/card:shadow-orange-500/20',
+  purple: 'group-hover/card:border-violet-400/40 group-hover/card:shadow-violet-500/20',
+}[accentColor];
+
 const cardBorder = {
   blue:   'border-sky-400/30 shadow-sky-500/10',
   teal:   'border-emerald-400/30 shadow-emerald-500/10',
@@ -62,30 +68,73 @@ const cardBorder = {
   purple: 'border-violet-400/30 shadow-violet-500/10',
 }[accentColor];
 
-const galleryRing = {
-  blue:   'ring-sky-400/40',
-  teal:   'ring-emerald-400/40',
-  red:    'ring-orange-400/40',
-  purple: 'ring-violet-400/40',
-}[accentColor];
-
-// Unique id para el lightbox de esta card
-const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
 ---
 
-<div class="flip-card" role="region" aria-label={title} id={cardId}>
+<div class="flip-card reveal group/card" role="region" aria-label={title}>
   <div class="flip-inner">
 
     <!-- ── FRONT ── -->
-    <div class="flip-face flip-front rounded-xl border shadow-lg shadow-slate-950 border-white/[0.07] bg-[#0f1623] overflow-hidden hover:animate-pulse duration-[3000ms]">
+    <div class={`flip-face flip-front rounded-xl border shadow-lg shadow-slate-950 border-white/[0.07] bg-[#0f1623] overflow-hidden transition-[border-color,box-shadow] duration-300 group-hover/card:shadow-2xl ${hoverGlow}`}>
 
       <div class="relative overflow-hidden h-56 lg:h-72 bg-[#131929] shrink-0">
-        <img
-          src={previewImage}
-          alt={title}
-          loading="lazy"
-          class="w-full h-full object-cover object-top"
-        />
+        {imageFit === 'contain' ? (
+          <div
+            class="relative w-full h-full"
+            style={`background:
+              radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%),
+              radial-gradient(circle at 30% 50%, rgba(255,255,255,0.18) 0%, transparent 45%),
+              repeating-linear-gradient(90deg, #2e7d32 0 40px, #276b2b 40px 80px)`}
+          >
+            <!-- Cancha: césped con franjas de corte, luz de estadio y líneas blancas -->
+            <svg
+              class="absolute inset-0 w-full h-full text-white/60"
+              viewBox="0 0 400 240"
+              preserveAspectRatio="xMidYMid slice"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <rect x="12" y="12" width="376" height="216" rx="4" />
+              <line x1="200" y1="12" x2="200" y2="228" />
+              <circle cx="200" cy="120" r="38" />
+              <circle cx="200" cy="120" r="3" fill="currentColor" />
+              <rect x="12" y="62" width="56" height="116" />
+              <rect x="12" y="94" width="20" height="52" />
+              <circle cx="50" cy="120" r="2.5" fill="currentColor" />
+              <rect x="332" y="62" width="56" height="116" />
+              <rect x="368" y="94" width="20" height="52" />
+              <circle cx="350" cy="120" r="2.5" fill="currentColor" />
+            </svg>
+            <div class="relative flex items-center justify-center gap-5 lg:gap-8 h-full px-6 pb-4">
+              <img
+                src={previewImage}
+                alt={title}
+                loading="lazy"
+                class="h-32 lg:h-44 w-auto shrink-0 drop-shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-transform duration-500 ease-out group-hover/card:scale-110 group-hover/card:rotate-[20deg]"
+              />
+              {imageLabel && (
+                <div class="flex flex-col leading-none">
+                  <span class="text-3xl lg:text-5xl font-bold tracking-tight text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)]" style="font-family: 'space mono', monospace">
+                    {imageLabel.title}
+                  </span>
+                  {imageLabel.subtitle && (
+                    <span class="mt-2 font-mono text-sm lg:text-base uppercase tracking-[0.3em] text-sky-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                      {imageLabel.subtitle}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <img
+            src={previewImage}
+            alt={title}
+            loading="lazy"
+            class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover/card:scale-105"
+          />
+        )}
         <div class="absolute inset-0 bg-gradient-to-t from-[#0f1623]/90 via-[#0f1623]/10 to-transparent" />
       </div>
 
@@ -119,7 +168,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
 
         <div class="flex items-center gap-3 pt-2 border-t border-white/[0.05]">
           <button
-            onclick="this.closest('.flip-card').classList.add('is-flipped')"
+            data-flip
             class={`flex items-center gap-1.5 text-[0.8rem] font-mono px-4 py-1.5 rounded-lg border transition-all duration-200 ${verMasColor}`}
           >
             <IconArrowUp class="w-5 h-5" />
@@ -141,7 +190,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
     </div>
 
     <!-- ── BACK ── -->
-    <div class={`flip-face flip-back rounded-xl border bg-[#0d1220] overflow-hidden flex flex-col ${cardBorder}`}>
+    <div inert class={`flip-face flip-back rounded-xl border bg-[#0d1220] overflow-hidden flex flex-col ${cardBorder}`}>
 
       <div class={`h-1 w-full bg-gradient-to-r from-transparent ${borderAccent} to-transparent shrink-0`} />
 
@@ -175,7 +224,7 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
         <div class="flex items-center gap-3 pt-3 border-t border-white/[0.06]">
           
           <button
-            onclick="this.closest('.flip-card').classList.remove('is-flipped')"
+            data-flip
             class="flex items-center gap-1.5 text-[0.8rem] font-mono px-4 py-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] text-slate-400 hover:text-white hover:border-white/20 transition-all duration-200"
           >
             <IconArrowUp class="w-5 h-5" />
@@ -220,7 +269,15 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+      transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+      translate 0.3s ease-out;
+  }
+  /* Hover: la card se eleva un poco (solo en dispositivos con mouse) */
+  @media (hover: hover) {
+    .flip-card:hover .flip-inner {
+      translate: 0 -6px;
+    }
   }
   .flip-card.is-flipped .flip-inner {
     transform: rotateY(180deg);
@@ -237,9 +294,19 @@ const cardId = `card-${Math.random().toString(36).slice(2, 7)}`;
     transform: rotateY(180deg);
     overflow: hidden;
   }
-  .lightbox.is-open {
-    opacity: 1;
-    pointer-events: auto;
-  }
 </style>
 
+<script>
+  // Gira la card y deja inactiva (inert) la cara que queda oculta,
+  // así el teclado y los lectores de pantalla solo llegan a la visible.
+  document.querySelectorAll<HTMLButtonElement>(".flip-card [data-flip]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".flip-card");
+      if (!card) return;
+      const flipped = card.classList.toggle("is-flipped");
+      card.querySelector<HTMLElement>(".flip-front")!.inert = flipped;
+      card.querySelector<HTMLElement>(".flip-back")!.inert = !flipped;
+      card.querySelector<HTMLButtonElement>(`${flipped ? ".flip-back" : ".flip-front"} [data-flip]`)?.focus();
+    });
+  });
+</script>

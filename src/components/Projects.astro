@@ -15,7 +15,9 @@ const projects = [
     title: 'Liga Santander',
     description: 'Sitio Web Oficial de la Liga Santander, una liga de fútbol amateur en argentina. Perfil para clubes, fichajes de jugadores, fixtures, tabla de posiciones y resultados en tiempo real.',
     url: 'https://www.liga-s-argentina.com.ar/',    
-    previewImage: '/images/liga-santander.webp',
+    previewImage: '/images/liga-santander-logo.png',
+    imageFit: 'contain' as const,
+    imageLabel: { title: 'Liga S.', subtitle: 'Argentina' },
     accentColor: 'red' as const,
     tags: [
       { label: 'Astro',       Icon: IconAstro,    color: 'text-orange-400'  },
@@ -79,7 +81,7 @@ const projects = [
 
 <section id="proyectos" class="max-w-5xl mx-auto px-4 py-20 scroll-mt-10">
 
-  <div class="mb-12">    
+  <div class="reveal mb-12">    
     <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-orange-300">
       Mis <span class="text-sky-400">Proyectos</span>
     </h2>
