@@ -1,0 +1,10 @@
+// Configuración de Cloudflare Workers.
+// El sitio es estático: el Worker solo sirve los archivos que genera `astro build` en ./dist.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "porfolio-dev",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}

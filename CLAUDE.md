@@ -13,9 +13,15 @@ npm run dev       # dev server at localhost:4321
 npm run build     # static build to ./dist/
 npm run preview   # serve the built site
 npm run astro -- check   # type-check .astro files (needs @astrojs/check)
+npm run cf:dev    # build + serve dist/ through the Cloudflare Worker locally (wrangler dev)
+npm run deploy    # build + wrangler deploy to Cloudflare Workers
 ```
 
-There is no test suite and no lint script. `.eslintrc` and `.prettierrc` (with `prettier-plugin-astro`) exist, but ESLint itself is not installed as a dependency. Both `package-lock.json` (tracked) and `pnpm-lock.yaml` (untracked) are present — npm is the committed package manager.
+There is no test suite and no lint script. `.eslintrc` and `.prettierrc` (with `prettier-plugin-astro`) exist, but ESLint itself is not installed as a dependency. Both `package-lock.json` and `pnpm-lock.yaml` are tracked; when adding dependencies, update both (`npm install …` then `pnpm install --lockfile-only`). `pnpm-workspace.yaml` must not gain `minimumReleaseAgeExclude` entries — pin an older release instead.
+
+### Deployment
+
+Deployed as a Cloudflare Worker with static assets only (`wrangler.jsonc` → `assets.directory: ./dist`). There is no Astro adapter and no Worker script: the site must stay `output: "static"`. Adding SSR or API routes would require `@astrojs/cloudflare` and a `main` entry in `wrangler.jsonc`.
 
 ## Architecture
 
