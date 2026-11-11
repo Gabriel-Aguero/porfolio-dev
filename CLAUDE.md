@@ -17,7 +17,7 @@ npm run cf:dev    # build + serve dist/ through the Cloudflare Worker locally (w
 npm run deploy    # build + wrangler deploy to Cloudflare Workers
 ```
 
-There is no test suite and no lint script. `.eslintrc` and `.prettierrc` (with `prettier-plugin-astro`) exist, but ESLint itself is not installed as a dependency. Both `package-lock.json` and `pnpm-lock.yaml` are tracked; when adding dependencies, update both (`npm install …` then `pnpm install --lockfile-only`). `pnpm-workspace.yaml` must not gain `minimumReleaseAgeExclude` entries — pin an older release instead.
+There is no test suite and no lint script. `.eslintrc` and `.prettierrc` (with `prettier-plugin-astro`) exist, but ESLint itself is not installed as a dependency. Both `package-lock.json` and `pnpm-lock.yaml` are tracked; when adding dependencies, update both (`npm install …` then `pnpm install --lockfile-only`). `pnpm-workspace.yaml` must not gain `minimumReleaseAgeExclude` entries — pin an older release instead — and must keep `packages: ["."]`: Cloudflare Workers Builds installs with pnpm 9.10 (`pnpm install --frozen-lockfile`), which errors with "packages field missing or empty" without it.
 
 ### Deployment
 
