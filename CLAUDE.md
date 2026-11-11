@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal portfolio for Gabriel Agüero (deployed at https://devgaby.dev). Single-page static site built with Astro 5 + Tailwind CSS v4. All user-facing copy is in Spanish (`<html lang="es">`); keep new content in Spanish.
+Personal portfolio for Gabriel Agüero (deployed at https://porfolio-dev.gabrielhaguero.workers.dev; a custom domain is planned). Single-page static site built with Astro 5 + Tailwind CSS v4. All user-facing copy is in Spanish (`<html lang="es">`); keep new content in Spanish.
 
 ## Commands
 
@@ -50,4 +50,4 @@ Interactivity is plain `<script>` tags inside `.astro` files (no UI framework is
 - `Contacto.astro`: contact form sent via `@emailjs/browser` (public key, service and template IDs are hardcoded in the script).
 - `ProjectsCard.astro`: card flip (see above).
 
-The social preview image is `public/og-image.jpg` (1200×630), referenced with an absolute URL in `Layout.astro`.
+The public URL lives only in `site` in `astro.config.mjs`; `Layout.astro` builds canonical, `og:url` and the absolute `og:image`/`twitter:image` (`public/og-image.jpg`, 1200×630) from `Astro.site`. Changing domains = change that one line.

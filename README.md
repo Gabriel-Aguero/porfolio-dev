@@ -2,7 +2,7 @@
 
 Portfolio personal de Gabriel Agüero, desarrollador frontend e informático en salud.
 
-🔗 **https://devgaby.dev**
+🔗 **https://porfolio-dev.gabrielhaguero.workers.dev**
 
 ## Stack
 
